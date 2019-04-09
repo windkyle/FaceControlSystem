@@ -1,0 +1,32 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    name: root
+    url: jdbc:mysql://localhost:3306/fcs?useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: docker@1302
+
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+
+  application:
+    name: spring-boot-rabbitmq
+  rabbitmq:
+    host: 139.159.140.8
+    port: 45672
+    username: chh_checkin_person
+    password: chh_checkin_person@3008
+    virtual-host: /chh_checkin_person
+    template:
+      exchange: chh_checkin_person
+
+mybatis:
+  map-underscore-to-camel-case: true
+  type-aliases-package: com.xlauncher.fis.dao
+

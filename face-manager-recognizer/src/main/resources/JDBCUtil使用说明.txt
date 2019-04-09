@@ -1,0 +1,33 @@
+﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+1、登录139.159.205.62服务器		root/ChinaHotelHelp@1302
+2、进入目录：cd  /root/fis
+3、输入命令：java JDBCUtil "2019-03-20 14:00:00" "2019-03-22 14:00:00" "/root/fis/images" "0"
+	参数说明：args0：查询开始时间
+		  args1：查询结束时间
+		  args2：保存图片路径（/root/fis/images/user_images 为用户身份证图片保存路径、/root/fis/images/snmp_images 为摄像头抓拍图片保存路径）
+		  args3：需要保存的图片类型（0 为用户身份证图片、1 为摄像头抓拍图片）
+4、将已保存的图片拷贝至本地，并删除目录下的图片文件避免图片冗余
+5、仅/root/fis/images/snmp_images、/root/fis/images/user_images目录下文件可删除
+
+#注：程序所依赖的jar需拷贝到classpath路径下（如：$JAVA_HOME/lib）并在/etc/profile中指定该jar包
+	mysql-connector-java-5.1.7-bin.jar
+	spring-beans-5.0.5.RELEASE.jar
+	spring-core-5.0.5.RELEASE.jar
+	spring-web-5.0.5.RELEASE.jar
+	spring-jcl-5.0.5.RELEASE.jar
+	jackson-databind-2.9.5.jar
+	jackson-core-2.9.5.jar
+	jackson-annotations-2.9.0.jar
+
+alter table syn_user add user_image mediumblob COMMENT '用户身份证图片';
+alter table face_predict add face_photo mediumblob COMMENT '摄像头抓拍人脸图片';
+alter table face_predict add model_calculation varchar(8192) DEFAULT NULL COMMENT '人脸识别分析模型计算结果';
+
+# 依赖JAR包需要拷贝在$JAVA_HOME/lib/目录下，且/etc/profile文件需添加指定JAR
+# 如：CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$CLASSPATH:$JAVA_HOME/lib
+        :$JAVA_HOME/jre/lib:$JAVA_HOME/lib/mysql-connector-java-5.1.7-bin.jar
+        :$JAVA_HOME/lib/spring-core-5.0.5.RELEASE.jar:$JAVA_HOME/lib/spring-web-5.0.5.RELEASE.jar
+        :$JAVA_HOME/lib/spring-jcl-5.0.5.RELEASE.jar:$JAVA_HOME/lib/jackson-core-2.9.5.jar
+        :$JAVA_HOME/lib/jackson-databind-2.9.5.jar:$JAVA_HOME/lib/spring-beans-5.0.5.RELEASE.jar
+        :$JAVA_HOME/lib/jackson-annotations-2.9.0.jar:$JAVA_HOME/lib/fastjson-1.2.7.jar
+        :$JAVA_HOME/lib/amqp-client-3.6.5.jar:$JAVA_HOME/lib/mongo-java-driver-3.2.2.jar
