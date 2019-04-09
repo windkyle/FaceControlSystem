@@ -1,0 +1,12 @@
+device.ip=192.168.1.202,192.168.1.201
+device.port=8000
+device.userName=admin
+device.password=hdsj6878179*
+rabbitMQ.ip=139.159.205.62
+rabbitMQ.port=5672
+rabbitMQ.userName=admin
+rabbitMQ.password=admin
+rabbitMQ.queue=fgs_fis_img
+hotelId=fe3f279e4b8f46e7afd0076ffd4c5601
+hotelName=宿Hotel酒店
+sleepTime=10000
